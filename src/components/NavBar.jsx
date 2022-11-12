@@ -1,20 +1,37 @@
-import React from 'react';
+import React , {useState}from 'react';
 
 
 export default function NavBar() {
-  return(
-    <nav class="bg-gray-200">
-      <div class="flex space-x-8  mx-auto max-w-7xl p-8 sm:px-6 lg:px-8 ">
-<div>
-<input type="text" placeholder='Type your fav meal...'
-       class="relative flex justify-center rounded-md p-2 bg-gray-40 text-gray-300"      
+  const [text, setText] = useState('')
+
+
+const handleSubmit = (e) =>{
+  e.preventDefault();
+  
+}
+
+  return( 
+    <nav className="bg-gray-100">
+      <form 
+      onSubmit={handleSubmit}
+      className="flex space-x-4  mx-auto max-w-7xl p-6 sm:px-6 lg:px-8 ">
+ 
+<input type="text" 
+        placeholder='Type your fav meal...'
+        className="relative flex justify-center rounded-md p-2 bg-gray-40 
+       drop-shadow-md" 
+      onChange={(e) => setText(e.target.value)}
        />
-</div>
-      <div> <button class="bg-sky-500 hover:bg-blue-400 text-white rounded-md p-2 border-none">Search</button></div>
-      <div><button class="bg-blue-200 text-blue-600/75 hover:bg-black hover:text-white p-2 rounded-md border-none">Suprise Me !</button></div>
+
+        <button 
+        type="submit"
+        className="bg-sky-500 hover:bg-blue-400 text-white rounded-md p-2 border-none drop-shadow-md w-24">Search</button>
+      <button 
+      type="submit"
+      className="bg-blue-200 text-blue-600/75 hover:bg-black hover:text-white p-2 rounded-md border-none drop-shadow-md">Suprise Me !</button>
        
-      </div>
-      
+    
+      </form>
     </nav>
   )
 }
