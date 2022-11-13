@@ -11,24 +11,24 @@ const handleSubmit = (e) =>{
 }
 
   return( 
-    <nav className="bg-gray-100">
+    <nav className="bg-white">
       <form 
       onSubmit={handleSubmit}
       className="flex space-x-4  mx-auto max-w-7xl p-6 sm:px-6 lg:px-8 ">
  
 <input type="text" 
         placeholder='Type your fav meal...'
-        className="relative flex justify-center rounded-md p-2 bg-gray-40 
-       drop-shadow-md" 
+        className="relative flex justify-center rounded-md p-2 bg-gray-100 
+       drop-shadow-md " 
       onChange={(e) => setText(e.target.value)}
        />
 
         <button 
         type="submit"
-        className="bg-sky-500 hover:bg-blue-400 text-white rounded-md p-2 border-none drop-shadow-md w-24">Search</button>
+        className="bg-sky-500 hover:bg-blue-400 text-white rounded-md p-2 border-none drop-shadow-md w-24 cursor-pointer">Search</button>
       <button 
       type="submit"
-      className="bg-blue-200 text-blue-600/75 hover:bg-black hover:text-white p-2 rounded-md border-none drop-shadow-md">Suprise Me !</button>
+      className="bg-blue-200 text-blue-600/75 hover:bg-black hover:text-white p-2 rounded-md border-none drop-shadow-md cursor-pointer">Suprise Me !</button>
        
     
       </form>

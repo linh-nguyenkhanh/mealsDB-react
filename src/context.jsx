@@ -20,7 +20,7 @@ const AppProvider = ({children}) => {
   }
 useEffect(() =>{
       fetchMeal(searchMealUrl)
-},[meals])
+},[])
 
   return (
     <AppContext.Provider value={{meals}}>
