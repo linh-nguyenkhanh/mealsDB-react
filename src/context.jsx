@@ -1,35 +1,54 @@
-import React, {useContext, useEffect, useState} from 'react'
-import Axios from 'axios'
+import React, { useContext, useEffect, useState } from "react";
+import Axios from "axios";
 const AppContext = React.createContext();
 
+const searchMealUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+const randomMealUrl = "https://www.themealdb.com/api/json/v1/1/random.php";
 
-const searchMealUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?f=a'
-const randomMealUrl = 'https://www.themealdb.com/api/json/v1/1/random.php'
-
-const AppProvider = ({children}) => {
+const AppProvider = ({ children }) => {
+  const [loading, setLoading] = useState(false);
   const [meals, setMeals] = useState([]);
-
-
-  const fetchMeal =  async (url) => {
-    try{
-        const {data} = await Axios(url)
-        setMeals(data.meals)
-    } catch(error){
-        console.log(error.response)
+  const [searchTerm, setSearchTerm] = useState("");
+  //fetch all meals
+  const fetchMeal = async (url) => {
+    setLoading(true);
+    try {
+      const { data } = await Axios.get(url);
+      if (data.meals) {
+        setMeals(data.meals);
+      } else {
+        setMeals([]);
+      }
+    } catch (error) {
+      console.log(error.response);
     }
-  }
-useEffect(() =>{
-      fetchMeal(searchMealUrl)
-},[])
+    setLoading(false);
+  };
 
+  useEffect(() => {
+    fetchMeal(searchMealUrl);
+  }, []);
+
+  useEffect(() => {
+    if (!searchTerm) return;
+    fetchMeal(`${allMealsUrl}${searchTerm}`);
+  }, [searchTerm]);
+
+  //fetch random meals
+  const fetchRandomMeals = () => {
+    fetchMeal(randomMealUrl);
+  };
   return (
-    <AppContext.Provider value={{meals}}>
+    //providing initial context values
+    <AppContext.Provider
+      value={{ meals, loading, setSearchTerm, fetchRandomMeals }}
+    >
       {children}
     </AppContext.Provider>
-  )
-}
-export const useGlobalContext = () =>{
-  return useContext(AppContext)
-}
-
-export {AppContext, AppProvider}
+  );
+};
+export const useGlobalContext = () => {
+  return useContext(AppContext);
+};
+//export AppProvider to main and wrap App
+export { AppContext, AppProvider };
