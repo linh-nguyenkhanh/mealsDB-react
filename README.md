@@ -8,3 +8,5 @@ Practing TailwindCSS for User Interface : [TailwindCSS](https://tailwindcss.com/
 
 ## Call API meals with Axios
 Get free API meals : [mealsDB](https://www.themealdb.com/api.php)
+
+## Instructor: John Smilga (freeCodeCamp)
