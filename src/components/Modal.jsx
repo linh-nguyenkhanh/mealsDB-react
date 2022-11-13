@@ -1,11 +1,11 @@
 import React from "react";
-
+import {useGlobalContext} from '../context'
 
 export default function Modal(){
   return(
-    <section>
+    <aside>
       <h2>Favorite Food List</h2>
       <div></div>
-    </section>
+    </aside>
   )
 }

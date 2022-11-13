@@ -1,5 +1,6 @@
 import { useGlobalContext } from "../context";
 import { BsHandThumbsUp } from "react-icons/bs";
+
 export default function MealsCard() {
   const { meals, loading } = useGlobalContext();
 

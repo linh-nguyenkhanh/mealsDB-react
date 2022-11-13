@@ -9,6 +9,7 @@ const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [meals, setMeals] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [showModal, setShowModal] = useState(false);
   //fetch all meals
   const fetchMeal = async (url) => {
     setLoading(true);
@@ -31,7 +32,7 @@ const AppProvider = ({ children }) => {
 
   useEffect(() => {
     if (!searchTerm) return;
-    fetchMeal(`${allMealsUrl}${searchTerm}`);
+    fetchMeal(`${searchMealUrl}${searchTerm}`);
   }, [searchTerm]);
 
   //fetch random meals
@@ -41,7 +42,7 @@ const AppProvider = ({ children }) => {
   return (
     //providing initial context values
     <AppContext.Provider
-      value={{ meals, loading, setSearchTerm, fetchRandomMeals }}
+      value={{ meals, loading, setSearchTerm, fetchRandomMeals, showModal }}
     >
       {children}
     </AppContext.Provider>
