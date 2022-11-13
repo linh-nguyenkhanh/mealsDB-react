@@ -24,7 +24,7 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="bg-white ">
+    <nav className="bg-white drop-shadow-md ">
       <form
         onSubmit={handleSubmit}
         className="flex space-x-4 justify-center m-auto max-w-7xl p-6 sm:px-6 lg:px-8 "
