@@ -40,7 +40,7 @@ export default function NavBar() {
 
         <button
           type="submit"
-          className="bg-sky-500 hover:bg-blue-400 text-white rounded-md p-2 border-none drop-shadow-md w-24 cursor-pointer"
+          className="bg-sky-500 hover:bg-blue-800 text-white rounded-md p-2 border-none drop-shadow-md w-24 cursor-pointer"
         >
           Search
         </button>

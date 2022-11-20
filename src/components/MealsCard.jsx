@@ -2,7 +2,7 @@ import { useGlobalContext } from "../context";
 import { BsHandThumbsUp } from "react-icons/bs";
 
 export default function MealsCard() {
-  const { meals, loading, selectedMeal, selectMeal } = useGlobalContext();
+  const { meals, loading, selectMeal , addToFavorites} = useGlobalContext();
 
   if (loading) {
     return (
@@ -42,7 +42,9 @@ export default function MealsCard() {
             />
             <footer className="p-3 flex items-center justify-between flex-wrap ">
               <h5 className="text-base">{title}</h5>
-              <button className="bg-transparent text-lg p-2 hover:text-blue-500 border-none cursor-pointer transition hover:ease-in duration-100 hover:font-bold">
+              <button 
+              onClick={() => addToFavorites(idMeal)}
+              className="bg-transparent text-lg p-2 hover:text-blue-500 border-none cursor-pointer transition hover:ease-in duration-100 hover:font-bold">
                 <BsHandThumbsUp />
               </button>
             </footer>

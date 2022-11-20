@@ -11,6 +11,7 @@ const AppProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [selectedMeal, setSelectedMeal] = useState(null);
+  const [favorites, setFavorites] = useState([]);
 
   //fetch all meals
   const fetchMeal = async (url) => {
@@ -41,10 +42,14 @@ const AppProvider = ({ children }) => {
   const fetchRandomMeals = () => {
     fetchMeal(randomMealUrl);
   };
-  //select meal
-  const selectMeal = (idMeal, favouriteMeal) => {
+  //select meal : there are 2 arrays: favorites and meals
+  const selectMeal = (idMeal, favoriteMeal) => {
     let meal;
-    meal = meals.find((meal) => meal.idMeal === idMeal);
+    if (favoriteMeal) {
+      meal = favorites.find((meal) => meal.idMeal === idMeal);
+    } else {
+      meal = meals.find((meal) => meal.idMeal === idMeal);
+    }
     setSelectedMeal(meal);
     setShowModal(true);
   };
@@ -52,6 +57,20 @@ const AppProvider = ({ children }) => {
   //close modal
   const closeModal = () => {
     setShowModal(false);
+  };
+  // add favorite meals
+  const addToFavorites = (idMeal) => {
+    const alreadyFavorite = favorites.find((meal) => meal.idMeal === idMeal);
+    if (alreadyFavorite) return;
+    const meal = meals.find((meal) => meal.idMeal === idMeal);
+    const updatedFavorite = [...favorites, meal];
+    setFavorites(updatedFavorite);
+  };
+
+  // remove favorite meals
+  const removeFromFavorites = (idMeal) => {
+    const updatedFavorite = favorites.filter((meal) => meal.idMeal !== idMeal);
+    setFavorites(updatedFavorite);
   };
 
   return (
@@ -66,6 +85,9 @@ const AppProvider = ({ children }) => {
         selectMeal,
         selectedMeal,
         closeModal,
+        addToFavorites,
+        removeFromFavorites,
+        favorites,
       }}
     >
       {children}

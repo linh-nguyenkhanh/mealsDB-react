@@ -28,7 +28,7 @@ export default function Modal() {
             href={source}
             target="_blank"
             className="p-2 font-semibold text-blue-600 hover:text-blue-800
-            transition ease-in duration-300"
+            transition ease-in duration-300 underline"
           >
             Original Source
           </a>

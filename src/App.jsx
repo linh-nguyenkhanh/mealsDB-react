@@ -5,11 +5,11 @@ import Modal from "./components/Modal";
 import FavPanel from "./components/FavPanel";
 import { useGlobalContext } from "./context.jsx";
 function App() {
-  const { showModal } = useGlobalContext();
+  const { showModal, favorites } = useGlobalContext();
   return (
     <main>
       <NavBar />
-      <FavPanel />
+      {favorites.length > 0 && <FavPanel />}
       <MealsCard />
       {showModal && <Modal />}
     </main>
