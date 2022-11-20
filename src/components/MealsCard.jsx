@@ -2,7 +2,7 @@ import { useGlobalContext } from "../context";
 import { BsHandThumbsUp } from "react-icons/bs";
 
 export default function MealsCard() {
-  const { meals, loading } = useGlobalContext();
+  const { meals, loading, selectedMeal, selectMeal } = useGlobalContext();
 
   if (loading) {
     return (
@@ -35,6 +35,7 @@ export default function MealsCard() {
             hover:drop-shadow-2xl duration-300"
           >
             <img
+              onClick={() => selectMeal(idMeal)}
               src={image}
               alt="meals"
               className=" rounded-t-md object-cover h-50 w-50"
